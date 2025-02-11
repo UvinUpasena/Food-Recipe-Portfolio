@@ -1,26 +1,32 @@
-# Use Node.js image to build the React app
-FROM node:20 AS build
+# Stage 1: Build the React app using Vite
+FROM node:18 AS build
 
-# Set working directory
-WORKDIR /Client
+# Set the working directory inside the container
+WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY package.json ./
-COPY vite.config.js ./
-RUN npm install
+# Copy package.json and package-lock.json (or yarn.lock)
+COPY Client/package.json Client/package-lock.json* ./
 
-# Copy the rest of your frontend files and build the app
-COPY . .
+# Install dependencies
+RUN npm install --legacy-peer-deps
+
+# Copy the rest of the application code
+COPY Client/ .
+
+# Build the React app
 RUN npm run build
 
-# Now use Nginx to serve the build files
+# Stage 2: Serve the app using Nginx for production
 FROM nginx:alpine
 
-# Copy the React build files into Nginx
+# Copy the built app from the previous stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Expose port 80 to serve the frontend
+# Copy the custom Nginx configuration (if any)
+# COPY Client/nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80 for Nginx
 EXPOSE 80
 
-# Start Nginx server
+# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]

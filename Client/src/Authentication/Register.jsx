@@ -33,7 +33,7 @@ const Register = () => {
       <form onSubmit={handleRegister}>
         <input
           type="text"
-          placeholder="Name"
+          placeholder="Enter Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
