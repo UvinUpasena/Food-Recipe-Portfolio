@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  database:
+    image: mysql:8.0
+    container_name: foodblog_db
+    environment:
+      MYSQL_ROOT_PASSWORD: $(DB_ROOT_PASSWORD)
+      MYSQL_DATABASE: $(DB_NAME)
+      MYSQL_USER: $(DB_USER)
+      MYSQL_PASSWORD: $(DB_PASSWORD)
+    ports:
+      - "$(DB_PORT):$(DB_PORT)"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  backend:
+    build:
+      context: ./Server
+    image: foodblog_backend
+    container_name: foodblog_backend
+    working_dir: /Server
+    volumes:
+      - ./Server:/usr/src/app
+    ports:
+      - "$(BACK_END_PORT):$(BACK_END_PORT)"
+    env_file:
+      - ./Server/.env
+    command: ["npm", "start"]
+    depends_on:
+      - database
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Client/Dockerfile
+    image: foodblog_frontend
+    container_name: foodblog_frontend
+    ports:
+    - "$(FRONT_END_PORT):$(FRONT_END_PORT)"
+    depends_on:
+    - backend
+
+
+volumes:
+  db_data:
