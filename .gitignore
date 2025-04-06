@@ -1,3 +1,4 @@
 .env
 ./Server/.env
 ./Server/Doc.text
+./Client/docker-compose.yml

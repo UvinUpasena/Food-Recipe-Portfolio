@@ -1,0 +1,30 @@
+SHOW DATABASES;
+USE <database_name>;
+SHOW TABLES;
+DESCRIBE <table_name>;
+SELECT * FROM <table_name>;
+SELECT column1, column2 FROM <table_name>;
+
+SELECT DISTINCT column_name FROM <table_name>; Retrieves unique values from a specific column in a table.
+INSERT INTO <table_name> (column1, column2) VALUES (value1, value2);
+UPDATE <table_name> SET column1 = value1, column2 = value2 WHERE condition;
+UPDATE users SET email = 'newemail@example.com' WHERE username = 'johndoe';
+DELETE FROM <table_name> WHERE condition;
+DELETE FROM users WHERE username = 'johndoe';
+ALTER TABLE <table_name> ADD column_name datatype;
+ALTER TABLE users ADD last_login DATETIME;
+ALTER TABLE users DROP COLUMN last_login;
+CREATE DATABASE my_new_database;
+DROP DATABASE my_old_database;
+CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(50), email VARCHAR(100));
+DROP TABLE users;
+SHOW COLUMNS FROM users;
+SELECT * FROM users ORDER BY username ASC;
+
+SELECT users.username, orders.order_id FROM users
+JOIN orders ON users.id = orders.user_id;
+
+
+
+
+

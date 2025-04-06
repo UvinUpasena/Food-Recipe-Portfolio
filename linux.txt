@@ -1,0 +1,85 @@
+
+### Linux Command Cheat Sheet
+
+1. **sudo systemctl start mysql**
+   - Starts the MySQL service on your system.
+
+2. **sudo systemctl status mysql**
+   - Shows the status of the MySQL service (whether it's running or inactive).
+
+3. **sudo journalctl -u mysql**
+   - Displays the logs of the MySQL service.
+
+4. **ps aux**
+   - Lists all running processes on your system.
+   - Example:
+     ps aux | grep <process_name>
+
+5. **top**
+   - Displays a dynamic, real-time view of the system's processes.
+   - Useful for monitoring system resource usage.
+
+6. **htop**
+   - An improved version of `top`, with more interactive features (may need to install).
+
+7. **kill <PID>**
+   - Terminates a process using its PID (process ID).
+   - Sends the `SIGTERM` signal (graceful shutdown).
+
+8. **kill -9 <PID>**
+   - Forcefully terminates a process using the `SIGKILL` signal (no graceful shutdown).
+
+9. **kill -19 <PID>**
+   - Pauses a process using the `SIGSTOP` signal.
+
+10. **kill -18 <PID>**
+    - Resumes a paused process using the `SIGCONT` signal.
+
+11. **kill -1 <PID>**
+    - Sends `SIGHUP` to the process (reloads the process configuration).
+
+12. **netstat -tuln | grep 3306**
+    - Displays all active network connections and their associated processes.
+    - Specifically checks if MySQL is listening on port 3306.
+
+13. **mysql -u root -p**
+    - Logs into MySQL using the `root` user.
+    - Prompts you for the password.
+
+14. **SHOW DATABASES;**
+    - Lists all available databases in MySQL.
+
+15. **USE <database_name>;**
+    - Selects a database to use for subsequent queries.
+
+16. **SELECT DATABASE();**
+    - Displays the currently selected database in MySQL.
+
+17. **EXIT;**
+    - Exits the MySQL command line interface.
+
+18. **chmod <permissions> <file_name>**
+    - Changes the file permissions of a specified file.
+    - Example: `chmod 755 myfile.sh` gives read, write, and execute permission to the owner, and read and execute permission to others.
+
+19. **rsync**
+    - A command for copying and synchronizing files and directories.
+    - Example: `rsync -avz source_dir/ destination_dir/` to copy files from `source_dir` to `destination_dir`.
+
+20. **lsof -i:3306**
+    - Lists all processes using port 3306 (used by MySQL).
+
+21. **sudo systemctl stop mysql**
+    - Stops the MySQL service.
+
+22. **sudo systemctl restart mysql**
+    - Restarts the MySQL service.
+
+23. **df -h**
+    - Displays the available disk space on your system in human-readable format (e.g., GBs).
+
+24. **free -h**
+    - Displays memory usage (RAM) in a human-readable format.
+
+25. **top -i**
+    - Displays the processes that are using the most CPU and memory (interactive mode).
